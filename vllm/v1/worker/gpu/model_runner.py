@@ -680,7 +680,7 @@ class GPUModelRunner(LoRAModelRunnerMixin):
             lora_capture_cases=self.lora_capture_cases,
             varlen_decode=self.adaptive_verification is not None,
         )
-        check_attention_cp_compatibility(self.vllm_config)
+        check_attention_cp_compatibility(self.vllm_config, target_attn_layer_names)
         if isinstance(self.speculator, DraftModelSpeculator):
             # HACK(woosuk)
             self.speculator.set_attn(
